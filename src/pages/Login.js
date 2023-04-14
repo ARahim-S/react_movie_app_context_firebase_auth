@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginUser } from "../auth/firebase";
+import { signIn } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser(email, password, navigate);
+    signIn(email, password, navigate);
     console.log(email, password);
   };
   return (
