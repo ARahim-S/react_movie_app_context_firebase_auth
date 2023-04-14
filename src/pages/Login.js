@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signIn } from "../auth/firebase";
+import { signIn, signUpGoogleProvider } from "../auth/firebase";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -11,6 +11,10 @@ const Login = () => {
     e.preventDefault();
     signIn(email, password, navigate);
     console.log(email, password);
+  };
+
+  const handleGoogleProviderLogin = () => {
+    signUpGoogleProvider(navigate);
   };
   return (
     <div className="d-flex justify-content-center">
@@ -49,7 +53,10 @@ const Login = () => {
             //onClick={handleSubmit} If you send the data with onclick like that, "required" properties doesn't work. If you want to work required fields , please use onsubmit event at the form and change type of the input to the submit
           />
         </form>
-        <button className="btn btn-primary form-control">
+        <button
+          className="btn btn-primary form-control"
+          onClick={handleGoogleProviderLogin}
+        >
           Continue with Google
         </button>
       </div>
