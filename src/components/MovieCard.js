@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const IMG_API = "https://image.tmdb.org/t/p/w500";
 const defaultImage =
@@ -7,8 +9,16 @@ const defaultImage =
 
 const MovieCard = ({ title, poster_path, overview, vote_average, id }) => {
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   return (
-    <div className="movie">
+    <div
+      className="movie"
+      onClick={() =>
+        currentUser
+          ? navigate("details/" + id)
+          : toast.error("Please log in to see details")
+      }
+    >
       <img src={poster_path ? IMG_API + poster_path : defaultImage} alt="" />
       <div className="d-flex align-items-baseline justify-content-between p-1 text-white">
         <h5>{title}</h5>
