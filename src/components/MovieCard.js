@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { createUser } from "../auth/firebase";
 
 const IMG_API = "https://image.tmdb.org/t/p/w500";
 const defaultImage =
@@ -22,6 +21,10 @@ const MovieCard = ({ title, poster_path, overview, vote_average, id }) => {
             {vote_average}
           </span>
         )}
+      </div>
+      <div className="movie-over">
+        <h2>Overview</h2>
+        <p>{overview}</p>
       </div>
     </div>
   );
