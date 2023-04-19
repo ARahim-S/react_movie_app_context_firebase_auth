@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const MovieDetail = () => {
     axios
       .get(movieDetailBaseUrl)
       .then((res) => setMovieDetails(res.data))
-      .catch((err) => console.log(err.message));
+      .catch((err) => toast.error(err.message));
   }, [movieDetailBaseUrl]);
 
   return (

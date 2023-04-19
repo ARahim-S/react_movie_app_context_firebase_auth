@@ -15,9 +15,9 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 
 const AppRouter = () => {
-  const currentUser = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const PrivateRouter = () => {
-    const location = useLocation();
+    let location = useLocation();
     if (!currentUser) {
       return <Navigate to="/login" state={{ from: location }} replace />;
     }
@@ -25,19 +25,17 @@ const AppRouter = () => {
     return <Outlet />;
   };
   return (
-    <div>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<PrivateRouter />}>
-            <Route path="/details/:id" element={<MovieDetail />} />
-          </Route>
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route element={<PrivateRouter />}>
+          <Route path="/details/:id" element={<MovieDetail />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 
