@@ -10,6 +10,7 @@ const defaultImage =
 const MovieCard = ({ title, poster_path, overview, vote_average, id }) => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
   return (
     <div
       className="movie"
